@@ -1,6 +1,7 @@
 import io
 import re
 
+import numpy as np
 import pymupdf
 from PIL import Image
 
@@ -44,6 +45,7 @@ def decode_pdf(pdf_path):
 
     pdf_document.close()
 
+    image = np.array(image)
     return info, image
 
 
