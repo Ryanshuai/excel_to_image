@@ -9,6 +9,7 @@ from compose_image import generate_admission_im
 input_folder = r"C:\Users\10187\Desktop\欧韵\报名表"
 output_folder = r"C:\Users\10187\Desktop\欧韵\准考证"
 
+os.makedirs(output_folder, exist_ok=True)
 for pdf_path in tqdm(os.listdir(input_folder)):
     if not pdf_path.endswith(".pdf"):
         continue
