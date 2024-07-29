@@ -6,7 +6,7 @@ import numpy as np
 import pymupdf
 from PIL import Image
 
-location_mapping = {"大同": "大同艺诚文化", "灵丘": "灵丘县青少年宫", "线上考级": "大同艺诚文化线上考试"}
+location_mapping = {"大同": "大同艺诚文化", "灵丘": "灵丘县青少年宫", "线上考级": "大同艺诚文化线上试级"}
 
 
 def extract_info(text):
@@ -20,7 +20,7 @@ def extract_info(text):
 
     exam_location = exam_location.group(1)
     exam_location = location_mapping.get(exam_location, exam_location)
-    if exam_location not in ["大同", "灵丘", "线上考级", "大同艺诚文化", "灵丘县青少年宫", "大同艺诚文化线上考试"]:
+    if exam_location not in ["大同", "灵丘", "线上考级", "大同艺诚文化", "灵丘县青少年宫", "大同艺诚文化线上考级"]:
         print("student_name:", student_name.group(1), "organizer:", organizer.group(1),
               f"{exam_location}->大同艺诚文化")
         assert "艺诚文化" in organizer.group(1)
