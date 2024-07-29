@@ -19,6 +19,10 @@ def extract_info(text):
 
     exam_location = exam_location.group(1)
     exam_location = location_mapping.get(exam_location, exam_location)
+    if exam_location not in ["大同", "灵丘", "线上考试", "大同艺诚文化", "灵丘县青少年宫"]:
+        print("student_name:", student_name.group(1))
+        print(f"{exam_location}->大同艺诚文化")
+        exam_location = "大同艺诚文化"
     student_info = {
         '考生姓名 :': student_name.group(1),
         '考生编号 :': student_id.group(1),
