@@ -17,13 +17,15 @@ def extract_info(text):
 
     exam_location = exam_location.group(1)
     exam_location = location_mapping.get(exam_location, exam_location)
-    return [student_name.group(1),
-            student_id.group(1),
-            major.group(1),
-            level.group(1),
-            exam_time.group(1),
-            exam_location,
-            ]
+    student_info = {
+        '学生姓名 :': student_name.group(1),
+        '学生编号 :': student_id.group(1),
+        '专      业 :': major.group(1),
+        '级      别 :': level.group(1),
+        '考试时间 :': exam_time.group(1),
+        '考试地点 :': exam_location
+    }
+    return student_info
 
 
 def decode_pdf(pdf_path):
@@ -45,10 +47,6 @@ def decode_pdf(pdf_path):
     return info, image
 
 
-info, image = decode_pdf("2021_168578_张馨予.pdf")
-image.save("photo.png")
-
-
-# 华康宋体W5
-#  UKIJ Ekran Regular
-#  Noto Sans SC Bold
+if __name__ == '__main__':
+    info, image = decode_pdf("2021_168578_张馨予.pdf")
+    image.save("photo.png")
