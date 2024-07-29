@@ -1,6 +1,7 @@
 import io
 import re
 
+import cv2
 import numpy as np
 import pymupdf
 from PIL import Image
@@ -19,8 +20,8 @@ def extract_info(text):
     exam_location = exam_location.group(1)
     exam_location = location_mapping.get(exam_location, exam_location)
     student_info = {
-        '学生姓名 :': student_name.group(1),
-        '学生编号 :': student_id.group(1),
+        '考生姓名 :': student_name.group(1),
+        '考生编号 :': student_id.group(1),
         '专      业 :': major.group(1),
         '级      别 :': level.group(1),
         '考试时间 :': exam_time.group(1),
@@ -46,6 +47,7 @@ def decode_pdf(pdf_path):
     pdf_document.close()
 
     image = np.array(image)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     return info, image
 
 
